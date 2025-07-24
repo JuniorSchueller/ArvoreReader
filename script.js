@@ -1,7 +1,7 @@
 function arvoreReader() {
     let isStopped = true;
     const nextPageButton = document.querySelector('#root > main > div.sc-gTRrQi.cFSQkY > div:nth-child(3) > button');
-    const pageCount = document.querySelector('#footer-nav > div.sc-dSJDGZ.gTLZcZ > div.sc-iVCKna.dpHZdz > span');
+    //const pageCount = document.querySelector('#footer-nav > div.sc-dSJDGZ.gTLZcZ > div.sc-iVCKna.dpHZdz > span');
 
     const floatingButton = document.createElement('div');
     floatingButton.style.position = 'fixed';
@@ -203,11 +203,15 @@ function arvoreReader() {
         document.head.appendChild(script);
 
         function read() {
-            const actualPage = pageCount?.textContent?.includes(' de ') ? pageCount?.textContent?.split(' ')[0] : pageCount?.textContent?.split('/')[0];
-            const lastPage = pageCount?.textContent?.includes(' de ') ? pageCount?.textContent?.split(' ')[2] : pageCount?.textContent?.split('/')[1];
+            //const actualPage = pageCount?.textContent?.includes(' de ') ? pageCount?.textContent?.split(' ')[0] : pageCount?.textContent?.split('/')[0];
+            //const lastPage = pageCount?.textContent?.includes(' de ') ? pageCount?.textContent?.split(' ')[2] : pageCount?.textContent?.split('/')[1];
 
             if (!isStopped) {
-                if (actualPage !== lastPage) {
+                nextPageButton.click();
+                showToast('[ÁrvoreReader] Página Avançada!');
+                setTimeout(read, secondsToMilliseconds(randomAtRange(Number(speedMinInput.value), Number(speedMaxInput.value))));
+                
+                /*if (actualPage !== lastPage) {
                     nextPageButton.click();
                     showToast('[ÁrvoreReader] Página Avançada!');
                     setTimeout(read, secondsToMilliseconds(randomAtRange(Number(speedMinInput.value), Number(speedMaxInput.value))));
@@ -226,8 +230,7 @@ function arvoreReader() {
                     } else {
                         history.back();
                     }
-                }
-                
+                }*/
             }
         }
 
